@@ -1,0 +1,97 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{% static 'img/icon.gif' %}" type="image/gif" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <script src="{% static 'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+    </head>
+    <body id="app">
+        <div class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="{% url 'inicio' %}">DondeComer</a>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-right" id="menu">
+                {% if user.is_authenticated %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.first_name }} {{ user.last_name }} <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'salir' %}" class="btn btn-link navbar-btn">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+                          </ul>
+                        </li>
+                    </ul>
+                {% else %}
+                    <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-default navbar-btn">Login con Facebook</a>
+                {% endif %}
+                </div><!-- menu -->
+
+            </div><!-- container -->
+        </div><!-- navbar -->
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-sm-6">
+                        <h3>Encuentra el mejor lugar para comer</h3>
+                    </div>
+                    {% include 'buscador.html' %}
+            </div><!-- row -->
+
+
+
+            <div class="row contenido-home">
+                {% include 'filtros.html' %}
+                <div class="col-sm-9">
+                    <div class="list-group">
+                    </div>
+                    <button type="button" class="btn btn-default btn-lg btn-block btn-load">Cargar mas ...</button>
+                </div>
+            </div>
+        </div><!-- container -->
+
+        <script type="text/template" id="tplRestaurant">
+            <div class="list-group-item">
+                <div class="col-sm-3">
+                    <img src="<%= thum %>" class="media-object img-rounded img-responsive" alt="<%= name %>">
+                </div>
+                <div class="col-sm-6">
+                    <h3><%= name %></h3>
+                    <p><%= description %></p>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <h2><%= tips %> <small>tips</small></h2>
+                    <button type="button" class="btn btn-primary bnt-sm btn-block invisible btn-load">Ver detalle</button>
+                </div>
+            </div>
+        </script>
+
+        <script src="{% static 'js/vendor/jquery-2.1.1.min.js' %}"></script>
+        <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/vendor/underscore-min.js' %}"></script>
+        <script src="{% static 'js/vendor/backbone-min.js' %}"></script>
+        <script src="{% static 'js/backbone/modelos/models.js' %}"></script>
+        <script src="{% static 'js/backbone/colecciones/collections.js' %}"></script>
+        <script src="{% static 'js/backbone/vistas/views.js' %}"></script>
+        <script src="{% static 'js/backbone/rutas/routes.js' %}"></script>
+        <script src="{% static 'js/backbone/main.js' %}"></script>
+
+    </body>
+</html>

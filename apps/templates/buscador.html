@@ -1,0 +1,26 @@
+<div class="col-sm-6 buscador-home">
+    <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Elije tu ciudad <span class="caret"></span></button>
+
+            <div class="dropdown-menu form-group" role="menu">
+
+                <div class="radio">
+                    <label for="">
+                        <input type="radio" value="" name="city" class="city-all" checked>Todo
+                    </label>
+                </div>
+
+                {% for city in cities %}
+                    <div class="radio">
+                        <label for="">
+                            <input type="radio" value="{{ city.name }}" name="city" class="city" >{{ city.name }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+
+      </div><!-- /btn-group -->
+      <input type="text" class="form-control" placeholder="Encuentra tu restaurant favorito" id="search-box">
+    </div><!-- /input-group -->
+</div>

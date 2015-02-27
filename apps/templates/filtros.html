@@ -1,0 +1,34 @@
+<div class="col-sm-3">
+    <div class="form-group">
+        <label for="">Tipo de comida</label>
+        <div class="checkbox">
+            <label for="">
+                <input type="checkbox" class="categories-all" checked>Todo
+            </label>
+        </div>
+        {% for category in categories %}
+        <div class="checkbox">
+            <label for="">
+                <input type="checkbox" value="{{ category.id }}" class="categories">{{ category.name }}
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="form-group">
+        <label for="">Formas de pago</label>
+        <div class="checkbox">
+            <label for="">
+                <input type="checkbox" class="payments-all" checked>Todo
+            </label>
+        </div>
+        {% for payment in payments %}
+        <div class="checkbox">
+            <label for="">
+                <input type="checkbox" value="{{ payment.id }}" class="payments">{{ payment.pay }}
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+</div>
